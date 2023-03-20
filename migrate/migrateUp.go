@@ -18,6 +18,6 @@ func main() {
 	)
 
 	if errorMigration != nil {
-		log.Fatal("DB migration error")
+		log.Fatal("DB migration Up error")
 	}
 }
