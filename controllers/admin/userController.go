@@ -1,4 +1,4 @@
-package controllers
+package admin
 
 import (
 	"github.com/gin-gonic/gin"
@@ -11,6 +11,8 @@ type UserRequest struct {
 	Name     string
 	Password string
 }
+
+// Admin API
 
 func UserCreate(c *gin.Context) {
 
