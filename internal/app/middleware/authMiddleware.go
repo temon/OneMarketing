@@ -5,8 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
 	"net/http"
-	"oneMarketing/appInit"
-	"oneMarketing/models"
+	"oneMarketing/internal/app/appInit"
+	"oneMarketing/internal/app/model"
 	"os"
 	"strings"
 	"time"
@@ -37,7 +37,7 @@ func JwtAuth(c *gin.Context) {
 			c.AbortWithStatus(http.StatusUnauthorized)
 		}
 
-		var user models.User
+		var user model.User
 		appInit.DB.First(&user, claims["data"])
 
 		if user.ID == 0 {

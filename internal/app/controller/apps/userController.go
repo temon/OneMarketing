@@ -5,8 +5,8 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
-	"oneMarketing/appInit"
-	"oneMarketing/models"
+	"oneMarketing/internal/app/appInit"
+	"oneMarketing/internal/app/model"
 	"os"
 	"time"
 )
@@ -34,7 +34,7 @@ func Signup(c *gin.Context) {
 		return
 	}
 
-	user := models.User{Email: body.Email, Password: string(hash)}
+	user := model.User{Email: body.Email, Password: string(hash)}
 
 	result := appInit.DB.Create(&user)
 
@@ -61,7 +61,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	var user models.User
+	var user model.User
 	appInit.DB.First(&user, "email = ?", body.Email)
 
 	if user.ID == 0 {

@@ -1,13 +1,12 @@
 package main
 
 import (
-	"log"
-	"oneMarketing/appInit"
-	"oneMarketing/controllers/admin"
-	"oneMarketing/controllers/apps"
-	"oneMarketing/middleware"
-
 	"github.com/gin-gonic/gin"
+	"log"
+	appInit2 "oneMarketing/internal/app/appInit"
+	"oneMarketing/internal/app/controller/admin"
+	"oneMarketing/internal/app/controller/apps"
+	"oneMarketing/internal/app/middleware"
 )
 
 func setupRouter() *gin.Engine {
@@ -31,8 +30,8 @@ func setupRouter() *gin.Engine {
 }
 
 func init() {
-	appInit.LoadEnvVariables()
-	appInit.DBConnect()
+	appInit2.LoadEnvVariables()
+	appInit2.DBConnect()
 }
 
 func main() {

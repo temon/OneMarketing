@@ -2,8 +2,8 @@ package admin
 
 import (
 	"github.com/gin-gonic/gin"
-	"oneMarketing/appInit"
-	"oneMarketing/models"
+	"oneMarketing/internal/app/appInit"
+	"oneMarketing/internal/app/model"
 )
 
 type UserRequest struct {
@@ -24,7 +24,7 @@ func UserCreate(c *gin.Context) {
 		return
 	}
 
-	user := models.User{
+	user := model.User{
 		Email:    userReqData.Email,
 		Name:     userReqData.Name,
 		Password: userReqData.Password,
@@ -53,10 +53,10 @@ func UserUpdate(c *gin.Context) {
 		return
 	}
 
-	var user models.User
+	var user model.User
 	appInit.DB.First(&user, id)
 
-	appInit.DB.Model(&user).Updates(&models.User{
+	appInit.DB.Model(&user).Updates(&model.User{
 		Email:    userReqData.Email,
 		Name:     userReqData.Name,
 		Password: userReqData.Password,
@@ -68,7 +68,7 @@ func UserUpdate(c *gin.Context) {
 }
 
 func UserIndex(c *gin.Context) {
-	var users []models.User
+	var users []model.User
 	appInit.DB.Find(&users)
 
 	c.JSON(200, gin.H{
@@ -79,7 +79,7 @@ func UserIndex(c *gin.Context) {
 func UserShow(c *gin.Context) {
 	id := c.Param("id")
 
-	var user models.User
+	var user model.User
 	appInit.DB.First(&user, id)
 
 	c.JSON(200, gin.H{
@@ -89,7 +89,7 @@ func UserShow(c *gin.Context) {
 
 func UserDelete(c *gin.Context) {
 	id := c.Param("id")
-	appInit.DB.Delete(&models.User{}, id)
+	appInit.DB.Delete(&model.User{}, id)
 
 	c.Status(200)
 }
