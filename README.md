@@ -15,4 +15,5 @@ This is a Golang application for managing campaigns, channels, and ads.
 -  Run the following commands to install dependencies and start the application:
 
 
-      cd cmd/app && go run main.go
+
+            cd cmd/app && go run main.go
