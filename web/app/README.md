@@ -1,6 +1,6 @@
-# One Monitoring Web App
+# OneMarketing Web App
 
-This is the front-end application of One Monitoring, a web app built with ReactJS and Ant Design UI components. It is designed to provide a user-friendly interface for the core features of the platform.
+This is the front-end application of OneMarketing, a web app built with ReactJS and Ant Design UI components. It is designed to provide a user-friendly interface for the core features of the platform.
 
 ## Dependencies
 
