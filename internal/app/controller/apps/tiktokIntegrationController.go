@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/goccy/go-json"
 	"io"
+	"log"
 	"net/http"
 	"os"
 )
@@ -38,6 +39,12 @@ func TiktokAuthorize(c *gin.Context) {
 	c.Redirect(http.StatusFound, authURL)
 }
 
+func dclose(c io.Closer) {
+	if err := c.Close(); err != nil {
+		log.Fatal(err)
+	}
+}
+
 func TiktokCallbackHandler(c *gin.Context) {
 
 	appId := os.Getenv("TIKTOK_ADS_APP_ID")
@@ -61,7 +68,8 @@ func TiktokCallbackHandler(c *gin.Context) {
 	client := &http.Client{}
 	resp, _ := client.Do(req)
 
-	defer resp.Body.Close()
+	defer dclose(resp.Body)
+
 	body, _ := io.ReadAll(resp.Body)
 
 	// todo: save the token and refresh token
@@ -69,7 +77,11 @@ func TiktokCallbackHandler(c *gin.Context) {
 		AccessToken  string `json:"access_token"`
 		RefreshToken string `json:"refresh_token"`
 	}
-	json.Unmarshal(body, &tokens)
+	err := json.Unmarshal(body, &tokens)
+
+	if err != nil {
+		log.Fatal("Failed to parse json")
+	}
 
 	c.Status(200)
 }

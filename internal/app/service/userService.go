@@ -9,5 +9,5 @@ type UserService interface {
 	CreateUser(user *model.User) error
 }
 
-type userService struct {
-}
+//type userService struct {
+//}
