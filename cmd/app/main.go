@@ -26,6 +26,10 @@ func setupRouter() *gin.Engine {
 	r.POST("/api/v1/login", apps.Login)
 	r.GET("/api/v1/me", middleware.JwtAuth, apps.Me)
 
+	// tiktok ads integration
+	r.GET("/api/v1/tiktokAds/callback", apps.TiktokCallbackHandler)
+	r.GET("/api/v1/tiktokAds/authorization", apps.TiktokAuthorize)
+
 	return r
 }
 
@@ -35,6 +39,7 @@ func init() {
 }
 
 func main() {
+
 	r := setupRouter()
 
 	ginRunError := r.Run()
