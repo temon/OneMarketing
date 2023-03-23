@@ -1,4 +1,6 @@
 # OneMarketing
+![Golang API](https://github.com/temon/oneMarketing/actions/workflows/go.yml/badge.svg?branch=main)
+
 This is a Golang application for managing campaigns, channels, and ads.
 
 ### Features
